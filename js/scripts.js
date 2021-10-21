@@ -49,40 +49,52 @@ const team = [
 // Richiamo la classe dove posizionare gli elementi html
 const teamContainer = document.querySelector(".team-container");
 
-for (let i = 0; i < team.length; i++) {
-    const membroTeam = team[i];
-    console.log(membroTeam)
-    
-    teamContainer.innerHTML += `
+function addMember(container, immagine, nome, ruolo) {
+    container.innerHTML += `
     <div class="team-card">
         <div class="card-image">
             <img
-            src="${team[i].immagine}"
-            alt="${team[i].nome}"
+            src="${immagine}"
+            alt="${nome}"
             />
         </div>
         <div class="card-text">
-            <h3>${team[i].nome}</h3>
-            <p>${team[i].ruolo}</p>
+            <h3>${nome}</h3>
+            <p>${ruolo}</p>
         </div>
     </div>
     `;
 }
 
-// Richiamo l'id del botton dove far iniziare l'evento
-const addMember = document.getElementById(addMemberButton);
-const nomeUtenteTeam = document.getElementById("name").value;
-const ruoloUtenteTeam = document.getElementById("role").value;
-const imgUtenteTeam = document.getElementById("image").value
+for (let i = 0; i < team.length; i++) {
+    const membroTeam = team[i];
+    console.log(membroTeam)
 
-let y;
+    addMember(teamContainer, team[i].immagine, team[i].nome, team[i].ruolo);
+
+}
+
+const addMemberBtn = document.getElementById(addMemberButton);
+let teamCard = document.querySelectorAll(".team-card").length;
+
 addMemberButton.addEventListener("click", function(){
+
+    // Richiamo l'id del botton dove far iniziare l'evento
+    
+    const nomeUtenteTeam = document.getElementById("name").value;
+    const ruoloUtenteTeam = document.getElementById("role").value;
+    const imgUtenteTeam = document.getElementById("image").value;
 
     team.push ({
         nome: nomeUtenteTeam,
         ruolo: ruoloUtenteTeam,
         immagine: imgUtenteTeam
     });
+
+    y = teamCard;
+    y++;
+
+    addMember(teamContainer, team[teamCard].immagine, team[teamCard].nome, team[teamCard].ruolo);
 
 });
 
