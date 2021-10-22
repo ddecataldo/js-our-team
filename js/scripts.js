@@ -49,6 +49,14 @@ const team = [
 // Richiamo la classe dove posizionare gli elementi html
 const teamContainer = document.querySelector(".team-container");
 
+for (let i = 0; i < team.length; i++) {
+    const membroTeam = team[i];
+    // console.log(membroTeam)
+
+    addMember(teamContainer, team[i].immagine, team[i].nome, team[i].ruolo);
+
+}
+
 function addMember(container, immagine, nome, ruolo) {
     container.innerHTML += `
     <div class="team-card">
@@ -66,14 +74,7 @@ function addMember(container, immagine, nome, ruolo) {
     `;
 }
 
-for (let i = 0; i < team.length; i++) {
-    const membroTeam = team[i];
-    console.log(membroTeam)
-
-    addMember(teamContainer, team[i].immagine, team[i].nome, team[i].ruolo);
-
-}
-
+// Recupero l'id del bottone dove poi applicare l'evento click
 const addMemberBtn = document.getElementById(addMemberButton);
 let teamCard = document.querySelectorAll(".team-card").length;
 
